@@ -1,17 +1,16 @@
 package com.example.a41908.weather_forecast;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.inory.weather.gson.Weather;
+import com.example.a41908.weather_forecast.gson.Weather;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -22,6 +21,9 @@ import java.lang.reflect.Field;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import android.view.View;
+
 
 public class Home extends AppCompatActivity {
     FrameLayout layout1;
@@ -77,7 +79,7 @@ public class Home extends AppCompatActivity {
     Button button_realtmp;
     Button jmp_airquality;
 
-    Weather weather;//ÌìÆøĞÅÏ¢
+    Weather weather;//å¤©æ°”ä¿¡æ¯
     String weather_id = "CN101210107";
     //http://guolin.tech/api/weather?cityid=CN101210107&key=6d2c22ffc9ad4ee8a5197606f1257d91
 
@@ -86,7 +88,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        if (getSupportActionBar() != null){//È¥µô±êÌâÀ¸
+        if (getSupportActionBar() != null){//å»æ‰æ ‡é¢˜æ 
             getSupportActionBar().hide();
         }
 
@@ -96,46 +98,39 @@ public class Home extends AppCompatActivity {
         if(new_id!=null)
             weather_id = new_id;
 
-        update();//¸üĞÂÊı¾İ
+        update();//æ›´æ–°æ•°æ®
 
-        icon_weather_big = (ImageView) findViewById(R.id.icon_weather_big);//´óÍ¼±êicon_weather_yesterday = (ImageView) findViewById(R.id.icon_weather_1);
-        //icon_weather_today = (ImageView) findViewById(R.id.icon_weather_2);
+        icon_weather_big = (ImageView) findViewById(R.id.icon_weather_big);//å¤§å›¾æ ‡icon_weather_yesterday = (ImageView) findViewById(R.id.icon_weather_1);
+
         icon_weather_tomorrow = (ImageView) findViewById(R.id.icon_weather_3);
         icon_weather_aftertomorrow = (ImageView) findViewById(R.id.icon_weather_4);
-        icon_wind_up = (ImageView) findViewById(R.id.icon_wind_up);//ÉÏ·½µÄ·çÁ¦
-        //icon_wind_yesterday = (ImageView) findViewById(R.id.icon_wind_1);
+        icon_wind_up = (ImageView) findViewById(R.id.icon_wind_up);//ä¸Šæ–¹çš„é£åŠ›
         icon_wind_today = (ImageView) findViewById(R.id.icon_wind_2);
         icon_wind_tomorrow = (ImageView) findViewById(R.id.icon_wind_3);
         icon_wind_aftertomorrow = (ImageView) findViewById(R.id.icon_wind_4);
-        //weather_yesterday = (TextView) findViewById(R.id.weather_1);
         weather_today = (TextView) findViewById(R.id.weather_2);
         weather_tomorrow = (TextView) findViewById(R.id.weather_3);
         weather_aftertomorrow = (TextView) findViewById(R.id.weather_4);
         temp_up = (TextView) findViewById(R.id.temp_big);
-        //temp_yesterday = (TextView) findViewById(R.id.temp_1);
         temp_today = (TextView) findViewById(R.id.temp_2);
         temp_tomorrow = (TextView) findViewById(R.id.temp_3);
         temp_aftertomorrow = (TextView) findViewById(R.id.temp_4);
         wind_up = (TextView) findViewById(R.id.wind_up);
-        //wind_yesterday = (TextView) findViewById(R.id.wind_1);
         wind_today = (TextView) findViewById(R.id.wind_2);
         wind_tomorrow = (TextView) findViewById(R.id.wind_3);
         wind_aftertomorrow = (TextView) findViewById(R.id.wind_4);
         air_quality_up = (TextView) findViewById(R.id.air_quality_up);
-        //air_quality_yesterday = (TextView) findViewById(R.id.air_quality_);
-        //air_quality_today = (TextView) findViewById(R.id.air_quality_2);
-        //air_quality_tomorrow = (TextView) findViewById(R.id.air_quality_3);
-        //air_quality_aftertomorrow = (TextView) findViewById(R.id.air_quality_4);
-        wear = (TextView) findViewById(R.id.text_wear);//´©ÒÂ
-        feel = (TextView) findViewById(R.id.text_feel);//ÊæÊÊ¶È
-        wash = (TextView) findViewById(R.id.text_wash);//Ï´³µ
-        sun = (TextView) findViewById(R.id.text_sun);//·ÀÉ¹
+
+        wear = (TextView) findViewById(R.id.text_wear);//ç©¿è¡£
+        feel = (TextView) findViewById(R.id.text_feel);//èˆ’é€‚åº¦
+        wash = (TextView) findViewById(R.id.text_wash);//æ´—è½¦
+        sun = (TextView) findViewById(R.id.text_sun);//é˜²æ™’
         layout1 = (FrameLayout)findViewById(R.id.layout1);
         layout2 = (FrameLayout)findViewById(R.id.layout2);
         layout3 = (FrameLayout)findViewById(R.id.layout3);
-        layout4 = (LinearLayout)findViewById(R.id.button_weather_now);//Ìø×ªÖÁµ±Ç°ÌìÆøÒ³Ãæ
-        button_feeltmp = (Button)findViewById(R.id.button_feel);//Ìå¸ĞÎÂ¶È×ª»»°´Å¥
-        button_realtmp = (Button)findViewById(R.id.button_real);//Êµ²âÎÂ¶È×ª»»°´Å¥
+        layout4 = (LinearLayout)findViewById(R.id.button_weather_now);//è·³è½¬è‡³å½“å‰å¤©æ°”é¡µé¢
+        button_feeltmp = (Button)findViewById(R.id.button_feel);//ä½“æ„Ÿæ¸©åº¦è½¬æ¢æŒ‰é’®
+        button_realtmp = (Button)findViewById(R.id.button_real);//å®æµ‹æ¸©åº¦è½¬æ¢æŒ‰é’®
         jmp_feel = (LinearLayout)findViewById(R.id.jmp_feel);
         jmp_wear = (LinearLayout)findViewById(R.id.jmp_wear);
         jmp_wash = (LinearLayout)findViewById(R.id.jmp_wash);
@@ -146,8 +141,8 @@ public class Home extends AppCompatActivity {
         jmp_daily_weather2 = (LinearLayout)findViewById(R.id.jmp_daily_weather2);
         jmp_daily_weather3 = (LinearLayout)findViewById(R.id.jmp_daily_weather3);
         jmp_hourly_weather = (LinearLayout)findViewById(R.id.jmp_hourly_weather);
-
-        //Ìø×ªÖğĞ¡Ê±ÌìÆø
+/*
+        //è·³è½¬é€å°æ—¶å¤©æ°”
         jmp_hourly_weather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -157,7 +152,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //Ìø×ªÃ¿ÈÕÌìÆø
+        //è·³è½¬æ¯æ—¥å¤©æ°”
         jmp_daily_weather1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -189,7 +184,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //Ìø×ª³ÇÊĞÑ¡Ôñ
+        //è·³è½¬åŸå¸‚é€‰æ‹©
         jmp_choice_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -198,24 +193,24 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //Ìø×ªµ½¿ÕÆøÖÊÁ¿
+        //è·³è½¬åˆ°ç©ºæ°”è´¨é‡
         jmp_airquality.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, AirQuality.class);
                 intent.putExtra("PM25", weather.aqi.city.pm25);
-//                intent.putExtra("PM10", weather.aqi.city.pm10);
-//                intent.putExtra("SO2", weather.aqi.city.so2);
-//                intent.putExtra("NO2", weather.aqi.city.no2);
-//                intent.putExtra("CO", weather.aqi.city.co);
-//                intent.putExtra("O3", weather.aqi.city.o3);
+                intent.putExtra("PM10", weather.aqi.city.pm10);
+                intent.putExtra("SO2", weather.aqi.city.so2);
+                intent.putExtra("NO2", weather.aqi.city.no2);
+                intent.putExtra("CO", weather.aqi.city.co);
+                intent.putExtra("O3", weather.aqi.city.o3);
                 intent.putExtra("aqi", weather.aqi.city.aqi);
                 intent.putExtra("ID", weather_id);
                 startActivity(intent);
             }
         });
 
-        //Ìø×ª½¨ÒéÇø
+        //è·³è½¬å»ºè®®åŒº
         jmp_feel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -229,7 +224,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, Suggestion_wear.class);
-                //intent.putExtra("txt", weather.suggestion.drsg.txt);
+                intent.putExtra("txt", weather.suggestion.drsg.txt);
                 intent.putExtra("ID",weather_id);
                 startActivity(intent);
             }
@@ -247,20 +242,20 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, Suggestion_sun.class);
-                //intent.putExtra("txt", weather.suggestion.uv.txt);
+                intent.putExtra("txt", weather.suggestion.uv.txt);
                 intent.putExtra("ID",weather_id);
                 startActivity(intent);
             }
         });
 
-        //×ª»»Ìå¸ĞÎÂ¶È
+        //è½¬æ¢ä½“æ„Ÿæ¸©åº¦
         button_feeltmp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 temp_up.setText(weather.now.fl);
             }
         });
-        //×ª»»Êµ²âÎÂ¶È
+        //è½¬æ¢å®æµ‹æ¸©åº¦
         button_realtmp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -268,7 +263,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //Ìø×ªµ±Ç°ÌìÆø
+        //è·³è½¬å½“å‰å¤©æ°”
         layout4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,10 +274,10 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //µ×²¿
+        //åº•éƒ¨
         layout1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {//Ìø×ªÖÁHome
+            public void onClick(View view) {//è·³è½¬è‡³Home
                 Intent intent = new Intent(Home.this, Home.class);
                 intent.putExtra("ID",weather_id);
                 startActivity(intent);
@@ -290,7 +285,7 @@ public class Home extends AppCompatActivity {
         });
         layout2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {//Ìø×ªÖÁAround
+            public void onClick(View view) {//è·³è½¬è‡³Around
                 Intent intent = new Intent(Home.this, around.class);
                 intent.putExtra("ID",weather_id);
                 startActivity(intent);
@@ -298,17 +293,18 @@ public class Home extends AppCompatActivity {
         });
         layout3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {//Ìø×ªÖÁSet
+            public void onClick(View view) {//è·³è½¬è‡³Set
                 Intent intent = new Intent(Home.this, Set.class);
                 intent.putExtra("ID",weather_id);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
-    //¸üĞÂÊı¾İ
+    //æ›´æ–°æ•°æ®
     void update(){
         sendRequestWhithOKHttp();
+        //Toast.makeText(Home.this,"^ ^",Toast.LENGTH_SHORT).show();
     }
 
     private void sendRequestWhithOKHttp(){
@@ -343,33 +339,29 @@ public class Home extends AppCompatActivity {
         return null;
     }
 
-    //
-
-    //¸ü¸Ä¿Ø¼ş
+    //æ›´æ”¹æ§ä»¶
     private void showResponse(){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                //ÔÚ´Ë½øĞĞUI²Ù×÷
-                //Ê±¼ä
+                //åœ¨æ­¤è¿›è¡ŒUIæ“ä½œ
+
+                //æ—¶é—´
                 String time;
                 message_time = (TextView)findViewById(R.id.message_time);
                 time = weather.basic.update.loc;
-                message_time.setText("ÖĞÑëÆøÏóÌ¨\n"+time.substring(time.length()-5)+"·¢²¼");
+                message_time.setText("ä¸­å¤®æ°”è±¡å°\n"+time.substring(time.length()-5)+"å‘å¸ƒ");
                 text_jmp_hour = (TextView)findViewById(R.id.text_jmp_hour);
-                text_jmp_hour.setText(weather.hourly_forecastList.get(0).time);
+                text_jmp_hour.setText(time.substring(time.length()-5));
 
-                //ÌìÆø²¿·Ö
+                //å¤©æ°”éƒ¨åˆ†
                 weather_today = (TextView) findViewById(R.id.weather_2);
                 weather_tomorrow = (TextView) findViewById(R.id.weather_3);
                 weather_aftertomorrow = (TextView) findViewById(R.id.weather_4);
                 int code_today, code_tomorrow, code_aftertomorrow;
-//                code_today = weather.daily_forcecastList.get(0).cond.code_d;
-//                code_tomorrow = weather.daily_forcecastList.get(1).cond.code_d;
-//                code_aftertomorrow = weather.daily_forcecastList.get(2).cond.code_d;
-                code_today = 100;
-                code_tomorrow = 100;
-                code_aftertomorrow = 100;
+                code_today = weather.now.cond_code;
+                code_tomorrow = weather.now.cond_code;
+                code_aftertomorrow = weather.now.cond_code;
                 icon_weather_today = (ImageView) findViewById(R.id.icon_weather_2);
                 icon_weather_tomorrow = (ImageView) findViewById(R.id.icon_weather_3);
                 icon_weather_aftertomorrow = (ImageView) findViewById(R.id.icon_weather_4);
@@ -378,23 +370,22 @@ public class Home extends AppCompatActivity {
                 icon_weather_today.setImageResource(Get_Weather_Icon(code_today));
                 icon_weather_tomorrow.setImageResource(Get_Weather_Icon(code_tomorrow));
                 icon_weather_aftertomorrow.setImageResource(Get_Weather_Icon(code_aftertomorrow));
+                weather_today.setText(weather.daily_forecast.get(0).cond.txt_d);
+                weather_tomorrow.setText(weather.daily_forecast.get(1).cond.txt_d);
+                weather_aftertomorrow.setText(weather.daily_forecast.get(2).cond.txt_d);
 
-                weather_today.setText(weather.daily_forcecastList.get(0).cond.txt_d);
-                weather_tomorrow.setText(weather.daily_forcecastList.get(1).cond.txt_d);
-                weather_aftertomorrow.setText(weather.daily_forcecastList.get(2).cond.txt_d);
-
-                //ÎÂ¶È²¿·Ö
+                //æ¸©åº¦éƒ¨åˆ†
                 temp_up = (TextView) findViewById(R.id.temp_big);
                 temp_today = (TextView) findViewById(R.id.temp_2);
                 temp_tomorrow = (TextView) findViewById(R.id.temp_3);
                 temp_aftertomorrow = (TextView) findViewById(R.id.temp_4);
 
                 temp_up.setText(weather.now.tmp);
-                temp_today.setText(weather.daily_forcecastList.get(0).tmp.max+"/"+weather.daily_forcecastList.get(0).tmp.min+"¡ãC");
-                temp_tomorrow.setText(weather.daily_forcecastList.get(1).tmp.max+"/"+weather.daily_forcecastList.get(1).tmp.min+"¡ãC");
-                temp_aftertomorrow.setText(weather.daily_forcecastList.get(2).tmp.max+"/"+weather.daily_forcecastList.get(2).tmp.min+"¡ãC");
+                temp_today.setText(weather.daily_forecast.get(0).tmp.max+"/"+weather.daily_forecast.get(0).tmp.min+"Â°C");
+                temp_tomorrow.setText(weather.daily_forecast.get(1).tmp.max+"/"+weather.daily_forecast.get(1).tmp.min+"Â°C");
+                temp_aftertomorrow.setText(weather.daily_forecast.get(2).tmp.max+"/"+weather.daily_forecast.get(2).tmp.min+"Â°C");
 
-                //·ç²¿·Ö
+                //é£éƒ¨åˆ†
                 wind_up = (TextView) findViewById(R.id.wind_up);
                 wind_today = (TextView) findViewById(R.id.wind_2);
                 wind_tomorrow = (TextView) findViewById(R.id.wind_3);
@@ -403,80 +394,85 @@ public class Home extends AppCompatActivity {
                 icon_wind_today = (ImageView) findViewById(R.id.icon_wind_2);
                 icon_wind_tomorrow = (ImageView) findViewById(R.id.icon_wind_3);
                 icon_wind_aftertomorrow = (ImageView) findViewById(R.id.icon_wind_4);
+
                 int code_wind_today,code_wind_tomorrow, code_wind_aftertomorrow;
-//                code_wind_today = Get_Wind_Icon(weather.daily_forcecastList.get(0).wind.dir);
-//                code_wind_tomorrow = Get_Wind_Icon(weather.daily_forcecastList.get(1).wind.dir);
-//                code_wind_aftertomorrow = Get_Wind_Icon(weather.daily_forcecastList.get(2).wind.dir);
-//                icon_wind_up.setImageResource(code_wind_today);
-//                icon_wind_today.setImageResource(code_wind_today);
-//                icon_wind_tomorrow.setImageResource(code_wind_tomorrow);
-//                icon_wind_aftertomorrow.setImageResource(code_wind_aftertomorrow);
-
+                //é£å›¾æ ‡
+                code_wind_today = Get_Wind_Icon(weather.now.wind_dir);
+                code_wind_tomorrow = Get_Wind_Icon(weather.now.wind_dir);
+                code_wind_aftertomorrow = Get_Wind_Icon(weather.now.wind_dir);
+                icon_wind_up.setImageResource(code_wind_today);
+                icon_wind_today.setImageResource(code_wind_today);
+                icon_wind_tomorrow.setImageResource(code_wind_tomorrow);
+                icon_wind_aftertomorrow.setImageResource(code_wind_aftertomorrow);
+                //é£ä¿¡æ¯
                 wind_up.setText(weather.now.wind_sc);
-//                wind_today.setText(weather.daily_forcecastList.get(0).wind.sc);
-//                wind_tomorrow.setText(weather.daily_forcecastList.get(1).wind.sc);
-//                wind_aftertomorrow.setText(weather.daily_forcecastList.get(2).wind.sc);
+                wind_today.setText(weather.now.wind_sc);
+                wind_tomorrow.setText(weather.now.wind_sc);
+                wind_aftertomorrow.setText(weather.now.wind_sc);
 
-                //¿ÕÆøÖÊÁ¿²¿·Ö
+                //ç©ºæ°”è´¨é‡éƒ¨åˆ†
                 int aqi;
                 aqi = weather.aqi.city.aqi;
                 air_quality_up = (TextView) findViewById(R.id.air_quality_up);
                 air_quality_up.setText(Judge_Aqi(aqi)+" "+aqi);
 
-                //Ö¸Êı
-                wear = (TextView) findViewById(R.id.text_wear);//´©ÒÂ
-                feel = (TextView) findViewById(R.id.text_feel);//ÊæÊÊ¶È
-                wash = (TextView) findViewById(R.id.text_wash);//Ï´³µ
-                sun = (TextView) findViewById(R.id.text_sun);//·ÀÉ¹
-                //wear.setText(weather.suggestion.drsg.brf);
+                //æŒ‡æ•°
+                wear = (TextView) findViewById(R.id.text_wear);//ç©¿è¡£
+                feel = (TextView) findViewById(R.id.text_feel);//èˆ’é€‚åº¦
+                wash = (TextView) findViewById(R.id.text_wash);//æ´—è½¦
+                sun = (TextView) findViewById(R.id.text_sun);//é˜²æ™’
+
                 feel.setText(weather.suggestion.comf.brf);
                 wash.setText(weather.suggestion.cw.brf);
+                wear.setText("é•¿è¢–ã€è¡¬è¡«ã€å•è£¤");
+                sun.setText("SPF8-12ä¹‹é—´çš„é˜²æ™’éœœ");
+                //wear.setText(weather.suggestion.drsg.brf);
                 //sun.setText(weather.suggestion.uv.brf);
 
-                //Î»ÖÃ
+                //ä½ç½®
                 text_pos = (TextView)findViewById(R.id.text_pos);
-                text_pos.setText(weather.basic.cityName);
+                text_pos.setText(weather.basic.location);
             }
         });
     }
 
-    //ÅĞ¶Ï¿ÕÆøÖÊÁ¿µÈ¼¶
+    //åˆ¤æ–­ç©ºæ°”è´¨é‡ç­‰çº§
     private String Judge_Aqi(int aqi){
         if(aqi<=50)
-            return "ÓÅ";
+            return "ä¼˜";
         if(aqi<=100)
-            return "Á¼";
+            return "è‰¯";
         if(aqi<=150)
-            return "Çá¶ÈÎÛÈ¾";
+            return "è½»åº¦æ±¡æŸ“";
         if(aqi<=200)
-            return "ÖĞ¶ÈÎÛÈ¾";
+            return "ä¸­åº¦æ±¡æŸ“";
         if(aqi<=300)
-            return "ÖØ¶ÈÎÛÈ¾";
-        return "ÑÏÖØÎÛÈ¾";
+            return "é‡åº¦æ±¡æŸ“";
+        return "ä¸¥é‡æ±¡æŸ“";
     }
 
-    //»ñÈ¡·çÏòÍ¼±ê
+    //è·å–é£å‘å›¾æ ‡
     private int Get_Wind_Icon(String dir){
-        if(dir.equals("Î÷·ç"))
+        if(dir.equals("è¥¿é£"))
             return getResourceByReflect("wind_west");
-        if(dir.equals("±±·ç"))
+        if(dir.equals("åŒ—é£"))
             return getResourceByReflect("wind_north");
-        if(dir.equals("¶«·ç"))
+        if(dir.equals("ä¸œé£"))
             return getResourceByReflect("wind_east");
-        if(dir.equals("ÄÏ·ç"))
+        if(dir.equals("å—é£"))
             return getResourceByReflect("wind_south");
-        if(dir.equals("Î÷±±·ç"))
+        if(dir.equals("è¥¿åŒ—é£"))
             return getResourceByReflect("wind_northwest");
-        if(dir.equals("Î÷ÄÏ·ç"))
+        if(dir.equals("è¥¿å—é£"))
             return getResourceByReflect("wind_southwest");
-        if(dir.equals("¶«±±·ç"))
+        if(dir.equals("ä¸œåŒ—é£"))
             return getResourceByReflect("wind_northeast");
-        if(dir.equals("¶«ÄÏ·ç"))
+        if(dir.equals("ä¸œå—é£"))
             return getResourceByReflect("wind_southeast");
         return getResourceByReflect("wind_unknown");
     }
 
-    //»ñÈ¡ÌìÆøĞ¡Í¼±ê
+    //è·å–å¤©æ°”å°å›¾æ ‡
     private int Get_Weather_Icon(int code){
         String id = "";
         switch (code){
@@ -523,7 +519,7 @@ public class Home extends AppCompatActivity {
         return getResourceByReflect(id);
     }
 
-    //»ñÈ¡ÌìÆø´óÍ¼±ê
+    //è·å–å¤©æ°”å¤§å›¾æ ‡
     private int Get_Weather_Icon_Big(int code){
         String id = "";
         switch (code){
@@ -570,7 +566,7 @@ public class Home extends AppCompatActivity {
         return getResourceByReflect(id);
     }
 
-    //¸ù¾İÍ¼Æ¬Ãû»ñÈ¡Í¼Æ¬ID
+    //æ ¹æ®å›¾ç‰‡åè·å–å›¾ç‰‡ID
     public int getResourceByReflect(String imageName){
         Class drawable  =  R.mipmap.class;
         Field field = null;
