@@ -183,7 +183,7 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+*/
         //跳转城市选择
         jmp_choice_city.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +192,7 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+/*
         //跳转到空气质量
         jmp_airquality.setOnClickListener(new View.OnClickListener() {
             @Override
