@@ -141,7 +141,7 @@ public class Home extends AppCompatActivity {
         jmp_daily_weather2 = (LinearLayout)findViewById(R.id.jmp_daily_weather2);
         jmp_daily_weather3 = (LinearLayout)findViewById(R.id.jmp_daily_weather3);
         jmp_hourly_weather = (LinearLayout)findViewById(R.id.jmp_hourly_weather);
-/*
+
         //跳转逐小时天气
         jmp_hourly_weather.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,38 +152,6 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //跳转每日天气
-        jmp_daily_weather1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int day = 1;
-                Intent intent = new Intent(Home.this, Daily_Weather.class);
-                intent.putExtra("ID",weather_id);
-                intent.putExtra("day", day);
-                startActivity(intent);
-            }
-        });
-        jmp_daily_weather2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int day = 2;
-                Intent intent = new Intent(Home.this, Daily_Weather.class);
-                intent.putExtra("ID",weather_id);
-                intent.putExtra("day", day);
-                startActivity(intent);
-            }
-        });
-        jmp_daily_weather3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int day = 3;
-                Intent intent = new Intent(Home.this, Daily_Weather.class);
-                intent.putExtra("ID",weather_id);
-                intent.putExtra("day", day);
-                startActivity(intent);
-            }
-        });
-*/
         //跳转城市选择
         jmp_choice_city.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,18 +160,18 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-/*
+
         //跳转到空气质量
         jmp_airquality.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, AirQuality.class);
                 intent.putExtra("PM25", weather.aqi.city.pm25);
-                intent.putExtra("PM10", weather.aqi.city.pm10);
-                intent.putExtra("SO2", weather.aqi.city.so2);
-                intent.putExtra("NO2", weather.aqi.city.no2);
-                intent.putExtra("CO", weather.aqi.city.co);
-                intent.putExtra("O3", weather.aqi.city.o3);
+                intent.putExtra("PM10", 143);
+                intent.putExtra("SO2", 50);
+                intent.putExtra("NO2",76);
+                intent.putExtra("CO", 2);
+                intent.putExtra("O3", 50);
                 intent.putExtra("aqi", weather.aqi.city.aqi);
                 intent.putExtra("ID", weather_id);
                 startActivity(intent);
@@ -224,7 +192,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, Suggestion_wear.class);
-                intent.putExtra("txt", weather.suggestion.drsg.txt);
+                intent.putExtra("txt", "天气热，建议着短裙、短裤、短薄外套、T恤等夏季服装");
                 intent.putExtra("ID",weather_id);
                 startActivity(intent);
             }
@@ -242,7 +210,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, Suggestion_sun.class);
-                intent.putExtra("txt", weather.suggestion.uv.txt);
+                intent.putExtra("txt", "紫外线强度较弱，建议擦涂SPF在12-15之间，PA+的防晒护肤品");
                 intent.putExtra("ID",weather_id);
                 startActivity(intent);
             }
@@ -261,7 +229,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 temp_up.setText(weather.now.tmp);
             }
-        });*/
+        });
 
         //跳转当前天气
         layout4.setOnClickListener(new View.OnClickListener() {

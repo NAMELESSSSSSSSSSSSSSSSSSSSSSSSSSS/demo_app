@@ -42,7 +42,14 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name=".Weather_Now"></activity>
+        <activity android:name=".Weather_Now" />
+        <activity android:name=".AirQuality" />
+        <activity android:name=".Suggestion_feel" />
+        <activity android:name=".Suggestion_wear" />
+        <activity android:name=".Suggestion_wash" />
+        <activity android:name=".Suggestion_sun" />
+        <activity android:name=".Hourly_Weather" />
+
     </application>
 
 </manifest>

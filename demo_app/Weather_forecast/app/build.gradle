@@ -29,4 +29,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'org.litepal.android:core:1.4.1'
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
 }
