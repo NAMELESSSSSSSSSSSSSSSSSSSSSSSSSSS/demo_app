@@ -20,6 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="MLlueyNiMsVQ3w9MVgvnUjLhIG4L9Yz9" />
+
         <activity android:name=".Begin_interface">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +32,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".Home" />
-        <activity android:name=".ChooseCity"></activity>
+        <activity android:name=".ChooseCity" />
+        <activity android:name=".around" />
+        <activity android:name=".Set" />
+        <activity android:name=".About_us" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <activity android:name=".Weather_Now"></activity>
     </application>
 
 </manifest>

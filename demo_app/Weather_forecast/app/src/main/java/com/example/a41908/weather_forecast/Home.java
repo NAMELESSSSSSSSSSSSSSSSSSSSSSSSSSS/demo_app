@@ -261,7 +261,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 temp_up.setText(weather.now.tmp);
             }
-        });
+        });*/
 
         //跳转当前天气
         layout4.setOnClickListener(new View.OnClickListener() {
@@ -298,7 +298,7 @@ public class Home extends AppCompatActivity {
                 intent.putExtra("ID",weather_id);
                 startActivity(intent);
             }
-        });*/
+        });
     }
 
     //更新数据

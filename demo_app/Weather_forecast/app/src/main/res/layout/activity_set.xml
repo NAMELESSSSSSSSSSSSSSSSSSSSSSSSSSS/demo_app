@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.a41908.weather_forecast.Set">
+
+    <TextView
+        android:id="@+id/haha"
+        android:layout_width="match_parent"
+        android:layout_height="45sp"
+        android:text="  设置"
+        android:textSize="30sp"
+        android:background="#5555EE"
+        android:gravity="left"
+        android:layout_marginBottom="0sp"
+        android:clickable="true"/><!--标题-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10sp"
+        android:layout_marginLeft="10sp"
+        android:id="@+id/SmallWinsowTransparency">
+        <TextView
+            android:text="小部件透明度"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+            <TextView
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_weight="6"
+                android:gravity="left"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout><!--小部件透明-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:id="@+id/TemperatureUnit">
+        <TextView
+            android:text="温度单位"
+            android:layout_width="0sp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:layout_marginRight="-8dp"
+            android:gravity="left"
+            android:textSize="20sp" />
+        <Switch
+            android:id="@+id/ShowUnit"
+            android:layout_width="0sp"
+            android:layout_height="48sp"
+            android:layout_weight="5"
+            android:text="°C "
+            android:textSize="20sp"
+            android:gravity="right" />
+    </LinearLayout><!--温度单位-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:id="@+id/NotificationBarSwitch">
+        <TextView
+            android:text="通知栏开关"
+            android:layout_width="0sp"
+            android:layout_height="48dp"
+            android:layout_weight="3"
+            android:layout_marginRight="-8dp"
+            android:gravity="left"
+            android:textSize="20sp"
+            />
+        <Switch
+            android:id="@+id/switchMessage"
+            android:layout_width="0sp"
+            android:layout_height="48sp"
+            android:layout_weight="5"
+            android:layout_marginLeft="-8dp"
+            android:gravity="right"
+            />
+    </LinearLayout><!--通知栏开关-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10sp"
+        android:layout_marginLeft="10sp"
+        android:id="@+id/CleanCache">
+        <TextView
+            android:text="清理缓存"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+            <TextView
+                android:text="16.0MB"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout><!--清理缓存-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="20sp"
+        android:id="@+id/FeedBack">
+        <TextView
+            android:text="意见反馈"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:gravity="left"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+            <TextView
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout><!--意见反馈-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10sp"
+        android:layout_marginLeft="10sp"
+        android:id="@+id/NewIntroduction">
+        <TextView
+            android:text="新版介绍"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+            <TextView
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout><!--新版本介绍-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10sp"
+        android:layout_marginLeft="10sp"
+        android:id="@+id/CheckNewVersion">
+        <TextView
+            android:id="@+id/checkNewVersion"
+            android:text="检查更新"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="20sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+            <TextView
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout><!--检查更新-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10sp"
+        android:layout_marginLeft="10sp"
+        android:id="@+id/AboutUs">
+        <TextView
+            android:text="关于我们"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+            <TextView
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout><!--关于我们-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+        <FrameLayout
+            android:id="@+id/frameLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="#4F5475">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:baselineAligned="false">
+
+                <FrameLayout
+                    android:id="@+id/layout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" >
+
+                    <ImageView
+                        android:id="@+id/image1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|center"
+                        android:layout_marginTop="12dip"
+                        android:background="@mipmap/tab_home_hl"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="6dip"
+                        android:text="首页"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+
+                </FrameLayout><!--首页-->
+
+                <FrameLayout
+                    android:id="@+id/layout2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" >
+
+                    <ImageView
+                        android:id="@+id/image2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|center"
+                        android:layout_marginTop="12dip"
+                        android:background="@mipmap/tab_surround_hl"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="6dip"
+                        android:text="周边天气"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                    //   android:textColor="@color/tab_friendfeed_text"
+                </FrameLayout><!--周边天气-->
+
+                <FrameLayout
+                    android:id="@+id/layout3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="#00000000" >
+
+                    <ImageView
+                        android:id="@+id/image3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|center"
+                        android:layout_marginTop="12dip"
+                        android:background="@mipmap/tab_setting_hl" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="6dip"
+                        android:text="设置"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                    //android:textColor="@color/tab_friendfeed_text"
+                </FrameLayout><!--设置-->
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout><!--导航栏-->
+
+</LinearLayout>
